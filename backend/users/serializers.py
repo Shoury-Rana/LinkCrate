@@ -9,6 +9,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'email', 'first_name', 'last_name', 'role', 'password')
+        read_only_fields = ('role',)
 
     def create(self, validated_data):
         # Create user with a hashed password

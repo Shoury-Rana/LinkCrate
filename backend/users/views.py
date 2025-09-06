@@ -1,6 +1,6 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from .serializers import UserRegisterSerializer, LogoutSerializer
 from .models import User
@@ -20,7 +20,7 @@ class LogoutView(generics.GenericAPIView):
     View to blacklist a refresh token, effectively logging the user out.
     """
     serializer_class = LogoutSerializer
-    # permission_classes = [IsAuthenticated] # User must be logged in to log out
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
