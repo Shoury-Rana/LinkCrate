@@ -12,7 +12,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         read_only_fields = ('role',)
 
     def create(self, validated_data):
-        # Create user with a hashed password
         user = User.objects.create_user(
             email=validated_data['email'],
             password=validated_data['password'],

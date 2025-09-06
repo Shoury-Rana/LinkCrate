@@ -7,14 +7,9 @@ class IsOwnerOrReadOnly(BasePermission):
     Assumes the model instance has an `owner` or `user` attribute.
     """
     def has_object_permission(self, request, view, obj):
-        # Read permissions are allowed to any request,
-        # so we'll always allow GET, HEAD or OPTIONS requests.
         if request.method in SAFE_METHODS:
             return True
-
-        # Write permissions are only allowed to the owner of the object.
-        # This assumes the object instance has an attribute named 'owner' or 'user'.
-        # You may need to adjust this depending on your model field name.
+        
         if hasattr(obj, 'owner'):
             return obj.owner == request.user
         if hasattr(obj, 'user'):
