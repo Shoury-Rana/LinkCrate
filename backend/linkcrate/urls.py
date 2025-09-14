@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    # Include your users app's URLs
+    # Include your app's URLs
     path('api/users/', include('users.urls')),
+    path('api/files/', include('files.urls')), # <-- ADDED THIS LINE
 ]

@@ -41,8 +41,8 @@ class User(AbstractUser):
         OWNER = 'OWNER', 'Owner'
         ADMIN = 'ADMIN', 'Admin'
 
-    username = None
-    email = models.EmailField(_('email address'), unique=True)
+    username = models.CharField(_("username"), max_length=255, default=None, null=True)
+    email = models.EmailField(_('email address'), unique=True, primary_key=True)
     role = models.CharField(max_length=50, choices=Roles.choices, default=Roles.USER)
 
     USERNAME_FIELD = 'email'
